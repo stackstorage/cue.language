@@ -1,0 +1,45 @@
+// Copyright (c) 2017. Trove Technologies, Inc.
+
+buildscript {
+  ext.kotlin_version = '1.1.4'
+
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceSets {
+  main {
+    java {
+      srcDirs 'src'
+    }
+    resources {
+      srcDirs = ["src/"]; exclude "**/*.java"
+    }
+  }
+}
+
+repositories {
+  jcenter()
+  mavenCentral()
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+  classifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+artifacts {
+  archives sourcesJar
+}
+
+dependencies {
+
+}
+
